@@ -11,9 +11,9 @@ import java.io.OutputStream;
 
 public class TryWithResources {
 
-    static void copy(String src, String dst) throws IOException{
-        try(InputStream in = new FileInputStream(src);
-                OutputStream out = new FileOutputStream(dst)){
+    static void copy(String src, String dst) throws IOException {
+        try (InputStream in = new FileInputStream(src);
+                OutputStream out = new FileOutputStream(dst)) {
             byte[] buf = new byte[BUFFER_SIZE];
             int n;
             while ((n = in.read(buf)) >= 0) {
@@ -22,11 +22,12 @@ public class TryWithResources {
         }
     }
 
-    static String firstLineOfFile(String path, String defaultVal){
+    static String firstLineOfFile(String path, String defaultVal) {
         try (BufferedReader br = new BufferedReader(
-                new FileReader(path))){
-                    return br.readLine();
-                } catch (IOException e) {
+                new FileReader(path))) {
+            return br.readLine();
+        } catch (IOException e) {
             return defaultVal;
+        }
     }
 }
